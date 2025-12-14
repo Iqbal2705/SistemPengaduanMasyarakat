@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body login-card-body">
 
-                <h3>Login Admin SPM</h3>
+                <h3>Login</h3>
 
                 @if(session('error'))
                     <div class="alert alert-danger">{{ session('error') }}</div>

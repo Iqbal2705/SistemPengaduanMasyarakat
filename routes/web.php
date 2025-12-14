@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Staff\PengaduanController;
+
 
 Route::get('/', function () {
     return redirect('/login');
@@ -24,4 +27,17 @@ Route::middleware(['auth', 'admin'])
 
         // CRUD KATEGORI
         Route::resource('categories', CategoryController::class);
+        Route::resource('staff', StaffController::class);
     });
+
+Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
+
+    // dashboard TANPA controller
+    Route::view('/dashboard', 'staff.dashboard');
+
+    // pengaduan
+    Route::get('/pengaduan', [PengaduanController::class, 'index']);
+    Route::get('/pengaduan/{id}', [PengaduanController::class, 'show']);
+    Route::post('/pengaduan/{id}/balas', [PengaduanController::class, 'balas']);
+
+});

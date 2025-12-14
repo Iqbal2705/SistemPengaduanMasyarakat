@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('name');             // nama
             $table->string('email')->unique();  // email login
             $table->string('password');         // password login
-            $table->enum('role', ['admin', 'staff'])->default('staff');
+            $table->enum('role', ['admin', 'staff', 'guest'])->default('guest');
             $table->timestamps();               // waktu dibuat & diubah
         });
     }
