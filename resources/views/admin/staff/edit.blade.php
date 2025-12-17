@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Staff')
+@section('title', 'Edit Staff')
 
 @section('content')
 <div class="card">
     <div class="card-header" style="background: #007bff; color: white; padding: 15px; border-radius: 8px 8px 0 0;">
-        <h3 style="margin: 0;">Tambah Staff</h3>
+        <h3 style="margin: 0;">Edit Staff</h3>
     </div>
 
     <div class="card-body">
@@ -19,44 +19,57 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.staff.store') }}" method="POST">
+        <form action="{{ route('admin.staff.update', $staff->id) }}" method="POST">
             @csrf
+            @method('PUT')
+
+            <div class="form-group">
+                <label>Kode Staff</label>
+                <input type="text" class="form-control" value="{{ $staff->kode_staff }}" disabled>
+            </div>
 
             <div class="form-group">
                 <label>Nama <span style="color: red;">*</span></label>
-                <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                <input type="text" name="name" class="form-control" value="{{ old('name', $staff->user->name) }}" required>
             </div>
 
             <div class="form-group">
                 <label>Email <span style="color: red;">*</span></label>
-                <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
-                <small style="color: #666;">Email ini akan digunakan untuk login</small>
+                <input type="email" name="email" class="form-control" value="{{ old('email', $staff->user->email) }}" required>
             </div>
 
             <div class="form-group">
-                <label>Password <span style="color: red;">*</span></label>
-                <input type="password" name="password" class="form-control" required>
-                <small style="color: #666;">Minimal 6 karakter</small>
+                <label>Password</label>
+                <input type="password" name="password" class="form-control">
+                <small style="color: #666;">Kosongkan jika tidak ingin mengubah password</small>
             </div>
 
             <div class="form-group">
-                <label>Konfirmasi Password <span style="color: red;">*</span></label>
-                <input type="password" name="password_confirmation" class="form-control" required>
+                <label>Konfirmasi Password</label>
+                <input type="password" name="password_confirmation" class="form-control">
             </div>
 
             <div class="form-group">
                 <label>Jabatan <span style="color: red;">*</span></label>
-                <input type="text" name="jabatan" class="form-control" value="{{ old('jabatan') }}" required placeholder="Contoh: Petugas Pengaduan">
+                <input type="text" name="jabatan" class="form-control" value="{{ old('jabatan', $staff->jabatan) }}" required>
             </div>
 
             <div class="form-group">
                 <label>No. HP</label>
-                <input type="text" name="no_hp" class="form-control" value="{{ old('no_hp') }}" placeholder="08xxxxxxxxxx">
+                <input type="text" name="no_hp" class="form-control" value="{{ old('no_hp', $staff->no_hp) }}">
+            </div>
+
+            <div class="form-group">
+                <label>Status <span style="color: red;">*</span></label>
+                <select name="status" class="form-control" required>
+                    <option value="aktif" {{ old('status', $staff->status) == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                    <option value="nonaktif" {{ old('status', $staff->status) == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                </select>
             </div>
 
             <div style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary">
-                    <span style="margin-right: 5px;">💾</span> Simpan Staff
+                    <span style="margin-right: 5px;">💾</span> Update Staff
                 </button>
                 <a href="{{ route('admin.staff.index') }}" class="btn" style="background: #6c757d; color: white;">
                     <span style="margin-right: 5px;">←</span> Kembali

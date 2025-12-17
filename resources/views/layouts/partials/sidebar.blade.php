@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('categories.index') }}" class="nav-link">
+                    <a href="{{ route('admin.categories.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>Kategori</p>
                     </a>

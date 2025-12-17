@@ -70,7 +70,7 @@
                     <div class="icon">
                         <i class="fas fa-tags"></i>
                     </div>
-                    <a href="{{ route('categories.index') }}" class="small-box-footer">
+                    <a href="{{ route('admin.categories.index') }}" class="small-box-footer">
                         Kelola <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>

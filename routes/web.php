@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Staff\PengaduanController;
+use App\Http\Controllers\Admin\DashboardController;
 
 
 Route::get('/', function () {
@@ -12,32 +13,45 @@ Route::get('/', function () {
 });
 
 // AUTH
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginProcess']);
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ADMIN
 Route::middleware(['auth', 'admin'])
     ->prefix('admin')
+    ->name('admin.')  // <-- Ini penting!
     ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
 
         // CRUD KATEGORI
         Route::resource('categories', CategoryController::class);
+
+        // CRUD STAFF
         Route::resource('staff', StaffController::class);
     });
 
-Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
+// STAFF
+Route::middleware(['auth', 'staff'])
+    ->prefix('staff')
+    ->name('staff.')
+    ->group(function () {
 
-    // dashboard TANPA controller
-    Route::view('/dashboard', 'staff.dashboard');
+        Route::get('/dashboard', function () {
+            return view('staff.dashboard');
+        })->name('dashboard');
 
-    // pengaduan
-    Route::get('/pengaduan', [PengaduanController::class, 'index']);
-    Route::get('/pengaduan/{id}', [PengaduanController::class, 'show']);
-    Route::post('/pengaduan/{id}/balas', [PengaduanController::class, 'balas']);
+        // LIHAT PENGADUAN
+        Route::get('/pengaduan', [PengaduanController::class, 'index'])
+            ->name('pengaduan.index');
 
-});
+        Route::get('/pengaduan/{id}', [PengaduanController::class, 'show'])
+            ->name('pengaduan.show');
+
+        // BALAS PENGADUAN
+        Route::post('/pengaduan/{id}/balas', [PengaduanController::class, 'balas'])
+            ->name('pengaduan.balas');
+    });
+
