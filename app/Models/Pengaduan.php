@@ -14,15 +14,11 @@ class Pengaduan extends Model
     protected $fillable = [
         'kode_pengaduan',
         'user_id',
+        'guest_id',
         'category_id',
         'judul',
-        'isi_laporan',
-        'foto',
-        'lokasi',
-        'status',
-        'staff_id',
-        'tanggapan',
-        'tanggal_tanggapan'
+        'isi',
+        'status'
     ];
 
     public function balasan()
@@ -43,7 +39,7 @@ class Pengaduan extends Model
     // Relasi ke Category
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     // Relasi ke Staff (yang menangani)
@@ -77,4 +73,9 @@ class Pengaduan extends Model
 
         return $labels[$this->status] ?? 'Unknown';
     }
+    public function guest()
+    {
+        return $this->belongsTo(Guest::class);
+    }
+
 }

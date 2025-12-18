@@ -19,14 +19,5 @@ class UserSeeder extends Seeder
             ]
         );
 
-        User::firstOrCreate(
-            ['email' => 'iqbal@spm.com'],
-            [
-                'name' => 'Staff',
-                'password' => Hash::make('iqbal123'),
-                'role' => 'staff'
-            ]
-        );
-
     }
 }

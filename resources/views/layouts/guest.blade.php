@@ -2,43 +2,32 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>SPM | Sistem Pengaduan Masyarakat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title', 'Sistem Pengaduan Masyarakat')</title>
 
-    {{-- AdminLTE --}}
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="layout-top-nav">
-<div class="wrapper">
+<body>
 
-    {{-- NAVBAR --}}
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <div class="container">
-            <a href="/pengaduan" class="navbar-brand">
-                <strong>SPM</strong>
-            </a>
-        </div>
-    </nav>
-
-    {{-- CONTENT --}}
-    <div class="content-wrapper">
-        <div class="content pt-5">
-            <div class="container">
-                @yield('content')
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">SPM</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Beranda</a>
+            <a class="nav-link" href="/pengaduan">Buat Pengaduan</a>
+            <a class="nav-link" href="/cek">Cek Pengaduan</a>
         </div>
     </div>
+</nav>
 
-    {{-- FOOTER --}}
-    <footer class="main-footer text-center">
-        <strong>Sistem Pengaduan Masyarakat</strong> © {{ date('Y') }}
-    </footer>
-
+<div class="container my-4">
+    @yield('content')
 </div>
 
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<footer class="bg-light text-center py-3 mt-5">
+    <small>© {{ date('Y') }} Sistem Pengaduan Masyarakat</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

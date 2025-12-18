@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Staff\PengaduanController;
 use App\Http\Controllers\Admin\DashboardController;
-
+use App\Http\Controllers\Guest\GuestController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -55,3 +55,7 @@ Route::middleware(['auth', 'staff'])
             ->name('pengaduan.balas');
     });
 
+Route::get('/', [GuestController::class, 'index']);
+Route::get('/pengaduan', [GuestController::class, 'create']);
+Route::post('/pengaduan', [GuestController::class, 'store']);
+Route::get('/cek', [GuestController::class, 'cek']);

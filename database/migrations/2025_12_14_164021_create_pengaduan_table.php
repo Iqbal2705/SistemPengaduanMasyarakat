@@ -11,7 +11,8 @@ return new class extends Migration
         Schema::create('pengaduan', function (Blueprint $table) {
             $table->id();
             $table->string('kode_pengaduan')->unique();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->foreignId('guest_id')->nullable()->constrained('guests')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->string('judul');
             $table->text('isi_laporan');
