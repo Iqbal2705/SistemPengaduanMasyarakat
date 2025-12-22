@@ -44,19 +44,6 @@
         <h5>Detail Pengaduan</h5>
 
         <div class="mb-3">
-            <label class="form-label">Kategori</label>
-            <select name="category_id" class="form-control" required>
-                <option value="">-- Pilih Kategori --</option>
-                @foreach ($categories as $cat)
-                    <option value="{{ $cat->id }}">
-                        {{ $cat->nama_kategori }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-
-
-        <div class="mb-3">
             <label class="form-label">Judul</label>
             <input type="text" name="judul" class="form-control" required>
         </div>

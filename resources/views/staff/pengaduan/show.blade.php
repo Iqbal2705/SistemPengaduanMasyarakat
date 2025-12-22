@@ -14,7 +14,7 @@
         <div class="card-header" style="background: #007bff; color: white; padding: 15px; border-radius: 8px 8px 0 0;">
             <h3 style="margin: 0;">📄 Detail Pengaduan</h3>
         </div>
-        
+
         <div class="card-body">
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
@@ -38,16 +38,16 @@
                     <tr>
                         <td style="padding: 8px; font-weight: bold;">Pelapor</td>
                         <td style="padding: 8px;">
-                            : {{ optional($pengaduan->user)->name ?? 'Guest' }}
-                            {{ optional($pengaduan->user)->email ? '(' . $pengaduan->user->email . ')' : '' }}
+                            :
+                            @if($pengaduan->user)
+                                {{ $pengaduan->user->name }}
+                                ({{ $pengaduan->user->email }})
+                            @else
+                                {{ $pengaduan->nama_pelapor ?? 'Tidak diketahui' }}
+                            @endif
                         </td>
                     </tr>
-                    <tr>
-                        <td style="padding: 8px; font-weight: bold;">Kategori</td>
-                        <td style="padding: 8px;">
-                            : {{ optional($pengaduan->category)->nama_kategori ?? '-' }}
-                        </td>
-                    </tr>
+
                     <tr>
                         <td style="padding: 8px; font-weight: bold;">Lokasi</td>
                         <td style="padding: 8px;">: {{ $pengaduan->lokasi ?? '-' }}</td>

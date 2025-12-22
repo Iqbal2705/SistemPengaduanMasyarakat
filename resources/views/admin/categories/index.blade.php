@@ -60,21 +60,6 @@
                 </div>
             </div>
 
-            {{-- KATEGORI --}}
-            <div class="col-lg-4 col-6">
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3>Kategori</h3>
-                        <p>Jenis pengaduan</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-tags"></i>
-                    </div>
-                    <a href="{{ route('admin.categories.index') }}" class="small-box-footer">
-                        Kelola <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                </div>
-            </div>
 
             {{-- LAPORAN --}}
             <div class="col-lg-4 col-6">

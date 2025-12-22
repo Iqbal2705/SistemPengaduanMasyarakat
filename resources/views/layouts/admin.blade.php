@@ -29,6 +29,8 @@
         </section>
     </div>
 
+    @stack('scripts')
+
 </div>
 
 <!-- JS -->

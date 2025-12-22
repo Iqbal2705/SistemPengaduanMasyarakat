@@ -15,7 +15,6 @@ class Pengaduan extends Model
         'kode_pengaduan',
         'user_id',
         'guest_id',
-        'category_id',
         'judul',
         'isi',
         'status'
@@ -52,10 +51,9 @@ class Pengaduan extends Model
     public function getStatusBadgeAttribute()
     {
         $badges = [
-            'pending' => 'warning',
+            'baru' => 'warning',
             'proses' => 'info',
-            'selesai' => 'success',
-            'ditolak' => 'danger'
+            'selesai' => 'success'
         ];
 
         return $badges[$this->status] ?? 'secondary';
@@ -65,10 +63,9 @@ class Pengaduan extends Model
     public function getStatusLabelAttribute()
     {
         $labels = [
-            'pending' => 'Menunggu',
+            'baru' => 'Menunggu',
             'proses' => 'Diproses',
-            'selesai' => 'Selesai',
-            'ditolak' => 'Ditolak'
+            'selesai' => 'Selesai'
         ];
 
         return $labels[$this->status] ?? 'Unknown';

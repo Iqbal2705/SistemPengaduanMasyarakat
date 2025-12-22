@@ -27,7 +27,6 @@ class GuestController extends Controller
             'nama' => 'required',
             'email' => 'required|email',
             'no_hp' => 'required',
-            'category_id' => 'required',
             'judul' => 'required',
             'isi_laporan' => 'required|min:10'
         ]);
@@ -42,7 +41,6 @@ class GuestController extends Controller
         $pengaduan = Pengaduan::create([
             'kode_pengaduan' => 'PGD-' . strtoupper(uniqid()),
             'guest_id' => $guest->id,
-            'category_id' => $request->category_id,
             'judul' => $request->judul,
             'isi' => $request->isi_laporan,
             'status' => 'baru'

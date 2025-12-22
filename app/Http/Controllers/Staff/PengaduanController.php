@@ -46,13 +46,12 @@ class PengaduanController extends Controller
         return view('staff.pengaduan.show', compact('pengaduan'));
     }
 
-    // Balas/Tanggapi pengaduan
     public function balas(Request $request, $id)
     {
         $pengaduan = Pengaduan::findOrFail($id);
 
         $validated = $request->validate([
-            'status' => 'required|in:proses,selesai,ditolak',
+            'status' => 'required|in:proses,selesai',
             'tanggapan' => 'required|string|min:10'
         ]);
 
@@ -62,23 +61,22 @@ class PengaduanController extends Controller
             return back()->with('error', 'Anda tidak terdaftar sebagai staff');
         }
 
-        // 1️⃣ SIMPAN KE TABEL PESAN (RIWAYAT BALASAN)
+        // Simpan riwayat balasan
         Balasan::create([
             'pengaduan_id' => $pengaduan->id,
             'user_id' => Auth::id(),
             'pesan' => $validated['tanggapan']
         ]);
 
-        // 2️⃣ UPDATE DATA PENGADUAN (STATUS TERKINI)
+        // Update status pengaduan
         $pengaduan->update([
             'status' => $validated['status'],
-            'tanggapan' => $validated['tanggapan'],
-            'staff_id' => $staff->id,
-            'tanggal_tanggapan' => now()
+            'staff_id' => $staff->id
         ]);
 
         return redirect()
             ->route('staff.pengaduan.show', $id)
             ->with('success', 'Tanggapan berhasil dikirim!');
     }
+
 }

@@ -41,7 +41,6 @@
                                 <th style="padding: 12px;">Kode</th>
                                 <th style="padding: 12px;">Tanggal</th>
                                 <th style="padding: 12px;">Pelapor</th>
-                                <th style="padding: 12px;">Kategori</th>
                                 <th style="padding: 12px;">Judul</th>
                                 <th style="padding: 12px; text-align: center;">Status</th>
                                 <th style="padding: 12px; text-align: center;">Aksi</th>
