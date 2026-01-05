@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="/">SPM</a>
+        <a class="navbar-brand" href="/">Sistem Pengaduan Masyarakat</a>
         <div class="navbar-nav">
             <a class="nav-link" href="/">Beranda</a>
             <a class="nav-link" href="/pengaduan">Buat Pengaduan</a>
