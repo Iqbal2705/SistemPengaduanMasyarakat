@@ -43,15 +43,18 @@
                                 {{ $pengaduan->user->name }}
                                 ({{ $pengaduan->user->email }})
                             @else
-                                {{ $pengaduan->nama_pelapor ?? 'Tidak diketahui' }}
+                                {{ $pengaduan->nama_pelapor ?? 'Guest' }}
                             @endif
                         </td>
                     </tr>
 
                     <tr>
                         <td style="padding: 8px; font-weight: bold;">Lokasi</td>
-                        <td style="padding: 8px;">: {{ $pengaduan->lokasi ?? '-' }}</td>
+                        <td style="padding: 8px;">
+                            : {{ $pengaduan->lokasi ?? request('lokasi') ?? '-' }}
+                        </td>
                     </tr>
+
                     <tr>
                         <td style="padding: 8px; font-weight: bold;">Status</td>
                         <td style="padding: 8px;">
