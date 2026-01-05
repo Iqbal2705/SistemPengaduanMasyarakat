@@ -49,7 +49,7 @@
                     </tr>
 
                   <tr>
-                    <td style="padding: 8px; font-weight: bold;">Lokasi</td>
+                    <td style="padding: 8px; font-weight: bold;">Keterangan</td>
                     <td style="padding: 8px;">
                         : {{ Str::between($pengaduan->isi_laporan, 'LOKASI:', '|LAPORAN:') ?: '-' }}
                     </td>
