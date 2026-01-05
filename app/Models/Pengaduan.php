@@ -16,7 +16,7 @@ class Pengaduan extends Model
         'user_id',
         'guest_id',
         'judul',
-        'isi',
+        'isi_laporan',
         'status'
     ];
 
@@ -36,10 +36,6 @@ class Pengaduan extends Model
     }
 
     // Relasi ke Category
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
 
     // Relasi ke Staff (yang menangani)
     public function staff()

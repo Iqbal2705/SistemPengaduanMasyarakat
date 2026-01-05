@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('pengaduan', function (Blueprint $table) {
@@ -13,7 +12,7 @@ return new class extends Migration
             $table->string('kode_pengaduan')->unique();
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->foreignId('guest_id')->nullable()->constrained('guests')->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->string('judul');
             $table->text('isi_laporan');
             $table->string('foto')->nullable();
