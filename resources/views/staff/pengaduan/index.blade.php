@@ -58,10 +58,6 @@
                                         {{ optional($item->user)->name ?? 'Guest' }}
                                     </td>
 
-                                    <!-- ✅ FIX: Kategori -->
-                                    <td style="padding: 12px;">
-                                        {{ optional($item->category)->nama_kategori ?? '-' }}
-                                    </td>
 
                                     <td style="padding: 12px;">{{ Str::limit($item->judul, 40) }}</td>
                                     <td style="padding: 12px; text-align: center;">
