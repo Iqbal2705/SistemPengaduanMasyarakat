@@ -36,6 +36,10 @@ class Pengaduan extends Model
     }
 
     // Relasi ke Category
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 
     // Relasi ke Staff (yang menangani)
     public function staff()
