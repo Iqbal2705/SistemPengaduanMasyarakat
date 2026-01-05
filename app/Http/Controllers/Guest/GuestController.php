@@ -27,6 +27,7 @@ class GuestController extends Controller
             'nama' => 'required',
             'email' => 'required|email',
             'no_hp' => 'required',
+            'category_id' => 'required|exists:categories,id', // Tambahkan validasi kategori
             'judul' => 'required',
             'isi_laporan' => 'required|min:10'
         ]);
@@ -40,10 +41,11 @@ class GuestController extends Controller
 
         $pengaduan = Pengaduan::create([
             'kode_pengaduan' => 'PGD-' . strtoupper(uniqid()),
-            'guest_id' => $guest->id,
-            'judul' => $request->judul,
-            'isi' => $request->isi_laporan,
-            'status' => 'baru'
+            'guest_id'       => $guest->id,
+            'category_id'    => $request->category_id, // Tambahkan ini agar tidak error foreign key
+            'judul'          => $request->judul,
+            'isi_laporan'    => $request->isi_laporan, // PERBAIKAN: Dari 'isi' menjadi 'isi_laporan'
+            'status'         => 'pending'              // PERBAIKAN: Dari 'baru' menjadi 'pending'
         ]);
 
         // 🔥 SIMPAN KE SESSION
@@ -51,7 +53,6 @@ class GuestController extends Controller
 
         return redirect('/cek');
     }
-
 
     public function cek()
     {
@@ -66,5 +67,4 @@ class GuestController extends Controller
 
         return view('guest.cek', compact('pengaduan'));
     }
-
 }
