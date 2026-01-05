@@ -27,7 +27,8 @@ class GuestController extends Controller
             'email' => 'required|email',
             'no_hp' => 'required',
             'judul' => 'required',
-            'isi_laporan' => 'required|min:10'
+            'isi_laporan' => 'required|min:10',
+            'lokasi' => 'nullable'
         ]);
 
         $guest = Guest::create([
@@ -37,6 +38,9 @@ class GuestController extends Controller
             'alamat' => $request->alamat
         ]);
 
+        $isiDenganLokasi = "LOKASI: " . ($request->lokasi ?? '-') . "\n" .
+            "LAPORAN: " . $request->isi_laporan;
+            
         $pengaduan = Pengaduan::create([
             'kode_pengaduan' => 'PGD-' . strtoupper(uniqid()),
             'guest_id' => $guest->id,
