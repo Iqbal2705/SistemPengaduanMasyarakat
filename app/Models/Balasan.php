@@ -3,12 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 class Balasan extends Model
 {
+    protected $table = 'balasan'; // 🔥 WAJIB
 
-    protected $table = 'pesan';
+    protected $fillable = [
+        'pengaduan_id',
+        'user_id',
+        'pesan'
+    ];
 
-    protected $fillable = ['pengaduan_id','user_id','pesan'];
+    public function pengaduan()
+    {
+        return $this->belongsTo(Pengaduan::class);
+    }
 
     public function user()
     {

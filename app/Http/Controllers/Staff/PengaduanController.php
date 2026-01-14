@@ -55,7 +55,7 @@ class PengaduanController extends Controller
             'tanggapan' => 'required|string|min:10'
         ]);
 
-        $staff = Auth::user()->staff;
+        $staff = Auth::id(); // user yang login adalah staff
 
         if (!$staff) {
             return back()->with('error', 'Anda tidak terdaftar sebagai staff');
@@ -68,11 +68,8 @@ class PengaduanController extends Controller
             'pesan' => $validated['tanggapan']
         ]);
 
-        // Update status pengaduan
-        $pengaduan->update([
-            'status' => $validated['status'],
-            'staff_id' => $staff->id
-        ]);
+        $pengaduan->status = $validated['status'];
+        $pengaduan->save();
 
         return redirect()
             ->route('staff.pengaduan.show', $id)
