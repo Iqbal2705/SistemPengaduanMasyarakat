@@ -80,7 +80,6 @@
             <div style="margin-bottom: 30px;">
                 <h4>📝 Isi Laporan</h4>
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 10px;">
-                    <h5>{{ $pengaduan->judul }}</h5>
                     <p style="margin-top: 10px; white-space: pre-wrap;">
                         {{ $pengaduan->isi ?? '-' }}
                     </p>
